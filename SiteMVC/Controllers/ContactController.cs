@@ -49,15 +49,25 @@ namespace SiteMVC.Controllers
         [HttpPost]
         public IActionResult Create(ContactModel contact)
         {
-            _contactRepository.Add(contact);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                _contactRepository.Add(contact);
+                return RedirectToAction("Index");
+            }
+
+            return View(contact);
         }
         
         [HttpPost]
         public IActionResult Edit(ContactModel contact)
         {
-            _contactRepository.Update(contact);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                _contactRepository.Update(contact);
+                return RedirectToAction("Index");
+            }
+
+            return View(contact);
         }
     }
 }
