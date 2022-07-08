@@ -42,32 +42,68 @@ namespace SiteMVC.Controllers
 
         public IActionResult Delete(int id)
         {
-            _contactRepository.Delete(id);
-            return RedirectToAction("Index");
+            try
+            {
+                bool apagado = _contactRepository.Delete(id);
+
+                if (apagado)
+                {
+                    TempData["MessageSuccess"] = "Contato excluído!";
+                }
+                else
+                {
+                    TempData["MessageError"] = "Não foi possível excluir o contato!";
+                }
+                
+                return RedirectToAction("Index");
+            }
+            catch (Exception e)
+            {
+                TempData["MessageError"] = $"Não foi possível excluir o contato! Detalhe do erro: {e.Message}";
+                return RedirectToAction("Index");
+            }
         }
         
         [HttpPost]
         public IActionResult Create(ContactModel contact)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _contactRepository.Add(contact);
+                if (ModelState.IsValid)
+                {
+                    _contactRepository.Add(contact);
+                    TempData["MessageSuccess"] = "Contato cadastrado com sucesso!";
+                    return RedirectToAction("Index");
+                }
+            
+                return View(contact);
+            }
+            catch (Exception e)
+            {
+                TempData["MessageError"] = $"Não foi possível cadastrar o contato, tente novamente. Detalhe do erro: {e.Message}";
                 return RedirectToAction("Index");
             }
-
-            return View(contact);
         }
         
         [HttpPost]
         public IActionResult Edit(ContactModel contact)
         {
-            if (ModelState.IsValid)
+            try
             {
-                _contactRepository.Update(contact);
+                if (ModelState.IsValid)
+                {
+                    _contactRepository.Update(contact);
+                    TempData["MessageSuccess"] = "Contato alterado com sucesso!";
+                    return RedirectToAction("Index");
+                }
+
+                return View(contact);
+            }
+            catch (Exception e)
+            {
+                TempData["MessageError"] = $"Não foi possível alterar o contato, tente novamente. Detalhe do erro: {e.Message}";
                 return RedirectToAction("Index");
             }
-
-            return View(contact);
         }
     }
 }
