@@ -1,0 +1,65 @@
+@model List<UserModel>
+@{
+    ViewData["Title"] = "Lista de Usuários";
+}
+<div class="text-center">
+    
+    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+        <a class="btn btn-primary" role="button" asp-controller="User" asp-action="Create">Adicionar novo usuário</a>
+    </div>
+    <br/>
+    
+    @if (TempData["MessageSuccess"] != null)
+    {
+        <div class="alert alert-success" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert">X</button>
+            @TempData["MessageSuccess"]
+        </div>
+    }
+    
+    @if (TempData["MessageError"] != null)
+    {
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="btn btn-danger btn-sm close-alert">X</button>
+            A simple danger alert—check it out!
+        </div>
+    }
+    
+    <br/>
+    
+    <h1 class="display-4">Listagem de usuários</h1>
+
+    <table class="table" id="table-users">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Login</th>
+            <th scope="col">Email</th>
+            <th scope="col">Data de cadastro</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+            @if(Model != null)
+            {
+                foreach (UserModel user in Model)
+                {
+                    <tr>
+                        <th scope="row">@user.Id</th>
+                        <td>@user.Name</td>
+                        <td>@user.Login</td>
+                        <td>@user.Email</td>
+                        <td>@user.RegistrationDate</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a role="button" class="btn btn-primary" asp-route-id="@user.Id" asp-controller="User" asp-action="Edit">Editar</a>
+                                <a role="button" class="btn btn-danger" asp-route-id="@user.Id" asp-controller="User" asp-action="DeleteConfirmation">Apagar</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

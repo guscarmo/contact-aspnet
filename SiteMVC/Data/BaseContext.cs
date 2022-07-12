@@ -10,4 +10,6 @@ public class BaseContext : DbContext
     }
     
     public DbSet<ContactModel> Contacts { get; set; }
+    
+    public DbSet<UserModel> Users { get; set; }
 }

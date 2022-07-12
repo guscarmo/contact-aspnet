@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "M7DJo57IlPcntkBMT50uz6tRgJzLlRKaKoUpsN0+noeeFp5IIxXtcpERzcpJj9qux69CD7C8MHMfO7r7nabYkg==",
+  "dgSpecHash": "2Ndh7Ap1SoNFGOmsnF7Eez2S8VUesyDlXUSZh0Qepc+03bTiuSqXsjNk90wES0VNqWx2HiNDiQ3CTBGnrYwRUw==",
   "success": true,
   "projectFilePath": "/home/gusbug/RiderProjects/SiteMVC/SiteMVC/SiteMVC.csproj",
   "expectedPackageFiles": [
@@ -165,7 +165,10 @@
     "/home/gusbug/.nuget/packages/system.threading.timer/4.3.0/system.threading.timer.4.3.0.nupkg.sha512",
     "/home/gusbug/.nuget/packages/system.windows.extensions/4.7.0/system.windows.extensions.4.7.0.nupkg.sha512",
     "/home/gusbug/.nuget/packages/system.xml.readerwriter/4.3.0/system.xml.readerwriter.4.3.0.nupkg.sha512",
-    "/home/gusbug/.nuget/packages/system.xml.xdocument/4.3.0/system.xml.xdocument.4.3.0.nupkg.sha512"
+    "/home/gusbug/.nuget/packages/system.xml.xdocument/4.3.0/system.xml.xdocument.4.3.0.nupkg.sha512",
+    "/home/gusbug/.nuget/packages/microsoft.netcore.app.ref/6.0.6/microsoft.netcore.app.ref.6.0.6.nupkg.sha512",
+    "/home/gusbug/.nuget/packages/microsoft.aspnetcore.app.ref/6.0.6/microsoft.aspnetcore.app.ref.6.0.6.nupkg.sha512",
+    "/home/gusbug/.nuget/packages/microsoft.netcore.app.host.linux-x64/6.0.6/microsoft.netcore.app.host.linux-x64.6.0.6.nupkg.sha512"
   ],
   "logs": []
 }
