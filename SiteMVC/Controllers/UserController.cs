@@ -29,6 +29,42 @@ namespace SiteMVC.Controllers
             return View();
         }
         
+        public IActionResult Edit(int id)
+        {
+            UserModel user = _userRepository.ListById(id);
+            return View(user);
+        }
+        
+        public IActionResult DeleteConfirmation(int id)
+        {
+            UserModel user = _userRepository.ListById(id);
+            return View(user);
+        }
+        public IActionResult Delete(int id)
+        {
+            try
+            {
+                bool apagado = _userRepository.Delete(id);
+
+                if (apagado)
+                {
+                    TempData["MessageSuccess"] = "Usuário excluído!";
+                }
+                else
+                {
+                    TempData["MessageError"] = "Não foi possível excluir o usuário!";
+                }
+                
+                return RedirectToAction("Index");
+            }
+            catch (Exception e)
+            {
+                TempData["MessageError"] = $"Não foi possível excluir o usuário! Detalhe do erro: {e.Message}";
+                return RedirectToAction("Index");
+            }
+        }
+        
+        
         [HttpPost]
         public IActionResult Create(UserModel user)
         {
@@ -50,5 +86,39 @@ namespace SiteMVC.Controllers
                 return RedirectToAction("Index");
             }
         }
+        
+        [HttpPost]
+        public IActionResult Edit(UserWithoutPasswordModel userWithoutPasswordModel)
+        {
+            try
+            {
+                UserModel user = null;
+                
+                if (ModelState.IsValid)
+                {
+                    user = new UserModel()
+                    {
+                        Id = userWithoutPasswordModel.Id,
+                        Name = userWithoutPasswordModel.Name,
+                        Login = userWithoutPasswordModel.Login,
+                        Email = userWithoutPasswordModel.Email,
+                        Perfil = userWithoutPasswordModel.Perfil
+                    };
+                    
+                    user = _userRepository.Update(user);
+                    TempData["MessageSuccess"] = "Usuário alterado com sucesso!";
+                    return RedirectToAction("Index");
+                }
+
+                return View(user);
+            }
+            catch (Exception e)
+            {
+                TempData["MessageError"] = $"Não foi possível alterar o usuário, tente novamente. Detalhe do erro: {e.Message}";
+                return RedirectToAction("Index");
+            }
+        }
+        
+        
     }
 }
