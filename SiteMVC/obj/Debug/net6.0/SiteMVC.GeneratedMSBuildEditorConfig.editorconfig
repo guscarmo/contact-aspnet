@@ -39,6 +39,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/home/gusbug/RiderProjects/SiteMVC/SiteMVC/Views/Login/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTG9naW4vSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/home/gusbug/RiderProjects/SiteMVC/SiteMVC/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -74,3 +78,7 @@ build_metadata.AdditionalFiles.CssScope =
 [/home/gusbug/RiderProjects/SiteMVC/SiteMVC/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-091ofozf9u
+
+[/home/gusbug/RiderProjects/SiteMVC/SiteMVC/Views/Shared/_LayoutDisconnected.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXREaXNjb25uZWN0ZWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-f0f2ocqeh6

@@ -13,6 +13,11 @@ public class UserRepository : IUserRepository
         _baseContext = baseContext;
     }
 
+    public UserModel FindByLogin(string login)
+    {
+        return _baseContext.Users.FirstOrDefault(x => x.Login.ToUpper() == login.ToUpper());
+    }
+
     public UserModel ListById(int id)
     {
         return _baseContext.Users.FirstOrDefault(x => x.Id == id);

@@ -22,5 +22,10 @@ public class UserModel
     public string Password { get; set; }
     public DateTime RegistrationDate { get; set; }
     public DateTime? UpdateDate { get; set; }
+
+    public bool ValidPassword(string password)
+    {
+        return Password == password;
+    }
     
 }
