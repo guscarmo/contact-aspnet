@@ -1,8 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore;
 using SiteMVC.Data;
+using SiteMVC.Helper;
 using SiteMVC.Models;
 using SiteMVC.Repositorio;
+using ISession = SiteMVC.Helper.ISession;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,9 +20,18 @@ builder.Services.AddDbContext<BaseContext>(
         .EnableSensitiveDataLogging()
         .EnableDetailedErrors()
     );
+
+builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddScoped<IContactRepository, ContactRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<ISession, Session>();
 
+builder.Services.AddSession(o =>
+{
+    o.Cookie.HttpOnly = true;
+    o.Cookie.IsEssential = true;
+});
 
 var app = builder.Build();
 
@@ -38,6 +49,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",

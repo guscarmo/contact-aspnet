@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SiteMVC.Models;
 using SiteMVC.Repositorio;
+using ISession = SiteMVC.Helper.ISession;
 
 namespace SiteMVC.Controllers
 {
@@ -12,14 +13,26 @@ namespace SiteMVC.Controllers
     {
 
         private readonly IUserRepository _userRepository;
+        private readonly ISession _session;
         
-        public LoginController(IUserRepository userRepository)
+        public LoginController(IUserRepository userRepository,
+                                ISession session)
         {
             _userRepository = userRepository;
+            _session = session;
         }
         public IActionResult Index()
         {
+            // Se o usuário estiver logado, redirecionar para a Home
+            if (_session.FindUserSession() != null) return RedirectToAction("Index","Home");
             return View();
+        }
+
+        public IActionResult Logout()
+        {
+            _session.RemoveUserSession();
+
+            return RedirectToAction("Index", "Login");
         }
 
         [HttpPost]
@@ -36,6 +49,7 @@ namespace SiteMVC.Controllers
                     {
                         if (user.ValidPassword(loginModel.Password))
                         {
+                            _session.CreateUserSession(user);
                             return RedirectToAction("Index", "Home");    
                         }
                         
