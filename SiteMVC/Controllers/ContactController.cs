@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using SiteMVC.Filters;
 using SiteMVC.Models;
 using SiteMVC.Repositorio;
 
 namespace SiteMVC.Controllers
 {
+    [LoggedUserPage]
     public class ContactController : Controller
     {
         private readonly IContactRepository _contactRepository;

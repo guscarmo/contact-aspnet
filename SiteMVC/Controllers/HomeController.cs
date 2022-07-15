@@ -1,11 +1,13 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using SiteMVC.Filters;
 using SiteMVC.Models;
 
 namespace SiteMVC.Controllers;
 
 public class HomeController : Controller
 {
+    [LoggedUserPage]
     public IActionResult Index()
     {
         return View();
